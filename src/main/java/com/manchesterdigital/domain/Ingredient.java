@@ -19,7 +19,9 @@ public class Ingredient {
 
     private BigDecimal amount;
 
-    //private UnitOfMeasure uom;
+
+    @OneToOne(fetch = FetchType.EAGER) //maybe the default. But want it to get it every time from the database
+    private UnitOfMeasure uom;
 
     @ManyToOne // Many ingredients for one recipe
     private Recipe recipe;
