@@ -7,6 +7,19 @@
 <body>
 <h1>My Recipes!</h1>
 <p>List of recipes</p>
+<table id="vets" class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px">ID</th>
+        <th style="width: 150px">Description</th>
+    </tr>
+    </thead>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}"> 1 </td>
+        <td th:text="${recipe.description}"> Title Of Recipe </td>
 
+    </tr>
+
+</table>
 </body>
 </html>

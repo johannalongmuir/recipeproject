@@ -27,10 +27,11 @@ public class Recipe {
 
     private String url;
 
+    @Lob
     private String directions;
 
-    //TODO add difficulty
-    //private Difficulty difficulty;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") //mapped by is target property on ingredient class.
     private Set<Ingredient> ingredients;
@@ -41,4 +42,9 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL) // Sets Recipe as the owner for this relationship. If delete recipe will delete notes.
     private Notes notes;
 
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name ="category_id"))
+    private Set<Category> categories;
 }
