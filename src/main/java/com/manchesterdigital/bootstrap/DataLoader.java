@@ -9,7 +9,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Optional;
 
 @Component
@@ -74,18 +73,20 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 "16 EAT THE BITCH!!!. \n");
 
         pancakes.setDifficulty(Difficulty.EASY);
-        pancakes.setIngredients(new HashSet<>());
-        pancakes.getIngredients().add(new Ingredient("flour", BigDecimal.valueOf(2), cup, pancakes));
-        pancakes.getIngredients().add(new Ingredient("baking powder", BigDecimal.valueOf(2), teaspoon, pancakes));
-        pancakes.getIngredients().add(new Ingredient("sugar", BigDecimal.valueOf(1), tablespoon, pancakes));
-        pancakes.getIngredients().add(new Ingredient("salt", BigDecimal.ONE, pinch, pancakes));
-        pancakes.getIngredients().add(new Ingredient("eggs", BigDecimal.valueOf(2), whole, pancakes));
-        pancakes.getIngredients().add(new Ingredient("milk", BigDecimal.valueOf(200), millilitres, pancakes));
-        pancakes.getIngredients().add(new Ingredient("butter", BigDecimal.valueOf(2), tablespoon, pancakes));
+        pancakes.getIngredients().add(new Ingredient("flour", new BigDecimal(2), cup, pancakes));
+        pancakes.getIngredients().add(new Ingredient("baking powder", new BigDecimal(2), teaspoon, pancakes));
+        pancakes.getIngredients().add(new Ingredient("sugar", new BigDecimal(1), tablespoon, pancakes));
+        pancakes.getIngredients().add(new Ingredient("salt", new BigDecimal(1), pinch, pancakes));
+        pancakes.getIngredients().add(new Ingredient("eggs", new BigDecimal(2), whole, pancakes));
+        pancakes.getIngredients().add(new Ingredient("milk", new BigDecimal(200), millilitres, pancakes));
+        pancakes.getIngredients().add(new Ingredient("butter", new BigDecimal(2), tablespoon, pancakes));
 
 
-        pancakes.setNotes(new Notes());
-        pancakes.setCategories(new HashSet<>());
+
+        Notes notes = new Notes();
+        notes.setRecipeNotes("Emmas pancakes are the best");
+        notes.setRecipe(pancakes);
+        pancakes.setNotes(notes);
         Optional<Category> optionalBreakfast = categoryRepository.findByDescription("Breakfast");
         pancakes.getCategories().add(optionalBreakfast.get());
 
@@ -149,35 +150,37 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 
         spicyGrilledChickenTaco.setDifficulty(Difficulty.EASY);
-        spicyGrilledChickenTaco.setIngredients(new HashSet<>());
 
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("ancho chili powder", BigDecimal.valueOf(2.0), tablespoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("dried oregano", BigDecimal.valueOf(1.0), teaspoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("dried cumin", BigDecimal.valueOf(1.0), teaspoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("sugar", BigDecimal.valueOf(1.0), teaspoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("salt", BigDecimal.valueOf(1/2), teaspoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("garlic clove, finely chopped", BigDecimal.valueOf(1.0), whole, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("finely grated orange zest", BigDecimal.valueOf(1.0), tablespoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("fresh-squeezed orange juice", BigDecimal.valueOf(3.0), tablespoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("olive oil", BigDecimal.valueOf(2.0), tablespoon, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("boneless chicken thighs", BigDecimal.valueOf(4.0), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("ancho chili powder", new BigDecimal(2), tablespoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("dried oregano", new BigDecimal(1), teaspoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("dried cumin", new BigDecimal(1), teaspoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("sugar", new BigDecimal(1), teaspoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("salt", new BigDecimal("0.5"), teaspoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("garlic clove, finely chopped", new BigDecimal(1), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("finely grated orange zest", new BigDecimal(1), tablespoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("fresh-squeezed orange juice", new BigDecimal(3), tablespoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("olive oil", new BigDecimal(2), tablespoon, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("boneless chicken thighs", new BigDecimal(4), whole, spicyGrilledChickenTaco));
 
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("small corn tortillas", BigDecimal.valueOf(8.0), whole, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("baby arugula", BigDecimal.valueOf(3.0), cup, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("medium ripe avocado", BigDecimal.valueOf(2.0), whole, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("radishes, thinly sliced", BigDecimal.valueOf(4.0), whole, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("cherry tomatoes, halved", BigDecimal.valueOf(1.0), cup, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("red onion, thinly sliced", BigDecimal.valueOf(1/4), whole, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("roughly chopped cilantro", BigDecimal.valueOf(1.0), garnish, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("sour cream thinned with milk", BigDecimal.valueOf(1/2), cup, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("milk to thin sour cream", BigDecimal.valueOf(1/4), cup, spicyGrilledChickenTaco));
-        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("lime, cut in wedges", BigDecimal.valueOf(1.0), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("small corn tortillas", new BigDecimal(8), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("baby arugula", new BigDecimal(3), cup, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("medium ripe avocado", new BigDecimal(2), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("radishes, thinly sliced", new BigDecimal(4), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("cherry tomatoes, halved", new BigDecimal(1), cup, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("red onion, thinly sliced", new BigDecimal("0.25"), whole, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("roughly chopped cilantro", new BigDecimal(1), garnish, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("sour cream thinned with milk", new BigDecimal("0.5"), cup, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("milk to thin sour cream", new BigDecimal("0.25"), cup, spicyGrilledChickenTaco));
+        spicyGrilledChickenTaco.getIngredients().add(new Ingredient("lime, cut in wedges", new BigDecimal(1), whole, spicyGrilledChickenTaco));
 
         // TODO work out how to set image
 
-        spicyGrilledChickenTaco.setNotes(new Notes());
+        Notes notes = new Notes();
+        notes.setRecipeNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)");
+        notes.setRecipe(spicyGrilledChickenTaco);
+        spicyGrilledChickenTaco.setNotes(notes);
 
-        spicyGrilledChickenTaco.setCategories(new HashSet<>());
+
 
         Optional<Category> optionalMexican = categoryRepository.findByDescription("Mexican");
         if (optionalMexican.isEmpty()) {
@@ -206,26 +209,34 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 "4 Serve: Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
         perfectGuacamole.setDifficulty(Difficulty.EASY);
 
-        perfectGuacamole.setIngredients(new HashSet<>());
 
-
-        perfectGuacamole.getIngredients().add(new Ingredient("Ripe avocado", BigDecimal.valueOf(2.0), whole, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Salt", BigDecimal.valueOf(1/4), teaspoon, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Fresh lime or lemon juice", BigDecimal.valueOf(1.0), tablespoon, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Minced red onion or thinly sliced green onion", BigDecimal.valueOf(2.0), tablespoon, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("serrano chiles, stems and seeds removed, minced", BigDecimal.valueOf(1.0), whole, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("cilantro (leaves and tender stems), finely chopped", BigDecimal.valueOf(2.0), tablespoon, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("freshly grated black pepper", BigDecimal.valueOf(1.0), pinch, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", BigDecimal.valueOf(0.5), whole, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Red radishes or jicama", BigDecimal.valueOf(1.0), garnish, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Tortilla chips", BigDecimal.valueOf(1.0), garnish, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Ripe avocado", new BigDecimal(2), whole, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Salt", new BigDecimal(0.25), teaspoon, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Fresh lime or lemon juice", new BigDecimal(1), tablespoon, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Minced red onion or thinly sliced green onion", new BigDecimal(2), tablespoon, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(1), whole, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2), tablespoon, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(1), pinch, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(0.5), whole, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Red radishes or jicama", new BigDecimal(1), garnish, perfectGuacamole));
+        perfectGuacamole.getIngredients().add(new Ingredient("Tortilla chips", new BigDecimal(1), garnish, perfectGuacamole));
 
 
         // TODO work out how to set image
         // perfectGuacamole.setImage("https://www.simplyrecipes.com/wp-content/uploads/2018/07/Guacamole-LEAD-1.jpg");
 
-        perfectGuacamole.setNotes(new Notes());
-        perfectGuacamole.setCategories(new HashSet<>());
+
+
+        Notes notes = new Notes();
+        notes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\\n\" +\n" +
+                "                \"Feel free to experiment! One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). Try guacamole with added pineapple, mango, or strawberries.\\n\" +\n" +
+                "                \"The simplest version of guacamole is just mashed avocados with salt. Don't let the lack of availability of other ingredients stop you from making guacamole.\\n\" +\n" +
+                "                \"To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.\\n\" +\n" +
+                "                \"\\n\" +\n" +
+                "                \"\\n\" +\n" +
+                "                \"Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws\"");
+        notes.setRecipe(perfectGuacamole);
+        perfectGuacamole.setNotes(notes);
 
         Optional<Category> optionalMexican = categoryRepository.findByDescription("Mexican");
         Optional<Category> optionalSide = categoryRepository.findByDescription("Side");

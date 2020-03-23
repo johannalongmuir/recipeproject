@@ -10,8 +10,8 @@ import java.util.List;
 @Service
 public class RecipeServiceImpl  implements RecipeService {
 
-    // autowire in the repository
-    RecipeRepository repository;
+    // autowire in the repository. Suggested use final for it
+    private final RecipeRepository repository;
 
     public RecipeServiceImpl(RecipeRepository repository) {
         this.repository = repository;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    private RecipeServiceImpl recipeService;
+    private final RecipeServiceImpl recipeService;
 
     public IndexController(RecipeServiceImpl recipeService) {
         this.recipeService = recipeService;
