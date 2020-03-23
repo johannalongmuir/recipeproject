@@ -37,6 +37,12 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") //mapped by is target property on ingredient class.
     private Set<Ingredient> ingredients = new HashSet<>();
 
+    public void addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        //return this. and change type to Recipe
+    }
+
     @Lob // will create as Binary Large Object
     private Byte[] image;
 
