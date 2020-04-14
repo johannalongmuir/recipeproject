@@ -4,6 +4,7 @@ import com.manchesterdigital.domain.*;
 import com.manchesterdigital.repositories.CategoryRepository;
 import com.manchesterdigital.repositories.RecipeRepository;
 import com.manchesterdigital.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -76,6 +78,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         whole = optionalWhole.get();
         garnish = optionalGarnish.get();
         millilitres = optionalMillilitres.get();
+
+        log.debug("Loaded measurements");
     }
 
     private void addPancakeRecipeToRecipeRepository() {
@@ -120,6 +124,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         pancakes.getCategories().add(optionalBreakfast.get());
 
         recipeRepository.save(pancakes);
+        log.debug("Pancake recipe saved");
 
     }
 
@@ -179,6 +184,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         perfectGuacamole.getCategories().add(optionalSide.get());
 
         recipeRepository.save(perfectGuacamole);
+        log.debug("Guacamole recipe saved");
     }
 
     private void addSpicyGrilledChickenTacoToRecipeRepository() {
@@ -245,6 +251,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         spicyGrilledChickenTaco.getCategories().add(optionalMexican.get());
 
         recipeRepository.save(spicyGrilledChickenTaco);
+        log.debug("Spicy Grilled Chicken Taco recipe saved");
     }
 
 }
