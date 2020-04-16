@@ -18,6 +18,7 @@ public class RecipeServiceImpl  implements RecipeService {
 
     public List<Recipe> getRecipes() {
         log.debug("I'm in the service");
+        log.warn("This isn't a good log");
         return (List<Recipe>) repository.findAll();
     }
 

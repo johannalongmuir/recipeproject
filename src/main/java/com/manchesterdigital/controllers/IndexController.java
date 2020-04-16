@@ -1,6 +1,6 @@
 package com.manchesterdigital.controllers;
 
-import com.manchesterdigital.services.RecipeServiceImpl;
+import com.manchesterdigital.services.RecipeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    private final RecipeServiceImpl recipeService;
+    private final RecipeService recipeService;
 
     @GetMapping({"", "/", "/index"})
     public String getIndexPage (Model model){
