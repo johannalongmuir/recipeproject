@@ -82,6 +82,7 @@ class IndexControllerTest {
         recipeList = new ArrayList<>();
         recipeList.add(Recipe.builder().description("Recipe One").build());
         recipeList.add(Recipe.builder().description("Recipe Two").build());
+
     }
 
     private void whenGetIndexPage() {
