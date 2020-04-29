@@ -49,7 +49,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn package
+      - run: mvn verify
 #      - run: mvn integration-test
 
 #version: 2.1 # use CircleCI 2.0
