@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
@@ -43,6 +43,18 @@ class RecipeServiceImplTest {
         assertEquals(recipe, recipeById);
         verify(recipeRepositoryMock, times(1)).findById(anyLong());
         verify(recipeRepositoryMock, never()).findAll();
+    }
 
+    @Test
+    void noRecipeFoundWhenGetRecipeById() {
+        when(recipeRepositoryMock.findById(anyLong())).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(RuntimeException.class,
+                () -> recipeService.getRecipeById(1L),
+                "This is not th message checked");
+
+        assertEquals("Recipe is not present", exception.getMessage());
+
+        verify(recipeRepositoryMock, times(1)).findById(anyLong());
     }
 }
