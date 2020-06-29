@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @AllArgsConstructor
@@ -18,7 +19,13 @@ public class IndexController {
     public String getIndexPage (Model model){
         log.debug("In getIndexPage in Index Controller");
         model.addAttribute("recipes", recipeService.getRecipes());
+        return "index";
+    }
 
+    @PostMapping("/addRecipe")
+    public String addRecipe (Model model){
+        log.debug("In getIndexPage in Index Controller");
+        model.addAttribute("recipes", recipeService.getRecipes());
         return "index";
     }
 }

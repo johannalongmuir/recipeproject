@@ -43,7 +43,6 @@ class IndexControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
-
     }
 
     @Test
