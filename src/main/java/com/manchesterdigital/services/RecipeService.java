@@ -8,4 +8,6 @@ public interface RecipeService  {
 
    List<Recipe> getRecipes();
 
+   Recipe getRecipeById(Long id);
+
 }
